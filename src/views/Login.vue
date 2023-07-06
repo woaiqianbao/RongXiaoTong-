@@ -1,6 +1,6 @@
 <template>
-  <div class="login-box">
-    <div class="login">
+  <div class="login">
+    <div style="margin-top: 10px" class="loginPart">
       <img :src="require(`@/assets/img/yellowlogo.png`)" id="icon" >
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" >
         <h2 >用户登录</h2>
@@ -18,48 +18,6 @@
           <el-link type="warning" style="margin-top: 20px" @click="$router.push('/register');">没有账号？去注册</el-link>
         </div>
       </el-form>
-
-
-
-
-<!--      <div class="header">-->
-<!--        -->
-<!--        <h1>用户登录</h1>-->
-<!--      </div>-->
-<!--      <div id="login_form">-->
-<!--        <div class="form-group">-->
-<!--          <label for="username">帐号</label>-->
-<!--          <input-->
-<!--            type="text"-->
-<!--            class="form-control"-->
-<!--            id="username"-->
-<!--            name="username"-->
-<!--            placeholder="请输入账号"-->
-<!--            v-model="acount"-->
-<!--          />-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--          <label for="">密码</label>-->
-
-<!--          <input-->
-<!--            type="password"-->
-<!--            class="form-control"-->
-<!--            id=""-->
-<!--            name="password"-->
-<!--            placeholder="Password"-->
-<!--            v-model="password"-->
-<!--          />-->
-<!--        </div>-->
-<!--        <div class="checkbox">-->
-<!--          <label> <input type="checkbox" />记住密码 </label>-->
-<!--        </div>-->
-<!--        <button class="btn btn-success btn-block" @click="loginBtn">-->
-<!--          登录-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <div class="message">-->
-<!--        <p>没有账号? <router-link to="/register">立即注册</router-link></p>-->
-<!--      </div>-->
     </div>
   </div>
 </template>
@@ -99,7 +57,8 @@ export default {
       }
     };
   },
-  methods: {
+
+  methods:{
     submitForm(formName) {
 
       this.$refs[formName].validate((valid) => {
@@ -130,23 +89,21 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-  },
-  created() {},
+  }
 };
 </script>
 
 <style lang="less" scoped>
+@import url("../../node_modules/bootstrap/dist/css/bootstrap.css");
 
-
-.login-box {
-  background-image: url("../assets/img/Login.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  position:absolute;
-  left:0; top:0; width:100%;height:100%;
+.login {
   box-sizing: border-box;
+  // width: 1897px;
+  height: 100%;
+  padding-top: 150px;
+  background: url("../assets/img/Login.jpg");
+  background-size: 1707px 837px;
 }
-
 
 #icon{
   position:absolute;
@@ -156,7 +113,10 @@ export default {
   transform:translate(-50%,-50%);
 }
 
-.login{
+
+
+
+.loginPart{
   position:absolute;
   /*定位方式绝对定位absolute*/
   top:50%;
@@ -179,27 +139,23 @@ export default {
   /*边框阴影  水平阴影0 垂直阴影15px 模糊25px 颜色黑色透明度0.5*/
   border-radius:15px;
   /*边框圆角，四个角均为15px*/
-
-  h2{
-    margin-top: -10px;
-    margin-bottom: 20px;
-    padding:0;
-    color: #fff;
-    font-family: "PingFang SC";
-    font-size: 24px;
-    font-weight: bold;
-    /*文字居中*/
-    margin-left:44%
-  }
-
-  .inputbox{
-    position:relative;
-  }
 }
+.loginPart h2{
+  margin-top: -10px;
+  margin-bottom: 20px;
 
-
-
-.login .inputElement .el-input__wrapper{
+  padding:0;
+  color: #fff;
+  font-weight: bold;
+  font-size: 22px;
+  font-family: "PingFang SC";
+  /*文字居中*/
+  margin-left:46%
+}
+.loginPart .inputbox{
+  position:relative;
+}
+.loginPart .inputElement .el-input__wrapper{
   width: 100%;
   padding:5px 0;
   font-size:14px;
@@ -212,11 +168,12 @@ export default {
   box-shadow: none;
   outline:none;
   /*outline用于绘制元素周围的线在这里用途,是将输入框的边框的线条使其消失*/
+
   background: transparent;
   /*背景颜色为透明*/
 }
 
-.login .inputElement .el-input__inner{
+.loginPart .inputElement .el-input__inner{
   font-size: 15px;
   color: #f6f0f0;
 }
@@ -227,6 +184,4 @@ export default {
   font-size: 17px;
   font-weight: bold;
 }
-
-
 </style>

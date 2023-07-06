@@ -1,141 +1,225 @@
 <template>
-  <div class="register-box">
-    <div class="register">
-      <div class="header">
-        <h1>用户注册</h1>
-      </div>
-      <div id="register_form">
-        <div class="form-group">
-          <label for="username">用户名</label>
-          <input
-            type="text"
-            class="form-control"
-            id="username"
-            name="username"
-            v-model="userName"
-            placeholder="请输入用户名"
-          />
+  <div class="login">
+    <div style="margin-top: 10px" class="registerPart">
+      <img :src="require(`@/assets/img/yellowlogo.png`)" id="icon" >
+      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+        <h2>用户注册</h2>
+        <el-form-item label="账号" prop="username">
+          <el-input  v-model="ruleForm.username" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="昵称" prop="nickname">
+          <el-input  v-model="ruleForm.nickname" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="确认密码" prop="checkPass">
+          <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="warning" @click="register('ruleForm')">注册</el-button>
+          <el-button @click="resetForm('ruleForm')">重置</el-button>
+        </el-form-item>
+        <div style="text-align: right;color: white;">
+          <el-link type="warning" style="margin-top: 20px" @click="$router.push('/login');">已有账号？去登录</el-link>
         </div>
-        <div class="form-group">
-          <label for="nickname">昵称</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nickname"
-            name="nickname"
-            v-model="nickName"
-            placeholder="请输入昵称"
-          />
-        </div>
-        <div class="form-group">
-          <label for="password">密码</label>
-          <input
-            type="password"
-            class="form-control"
-            id="password"
-            name="password"
-            v-model="password"
-            placeholder="请输入密码"
-          />
-        </div>
-        <button class="btn btn-success btn-block" @click="registerBtn">
-          注册
-        </button>
-        <!-- <input type="submit" value="tijiao" /> -->
-      </div>
-      <div class="message">
-        <p>已有账号? <router-link to="/login">点击登录</router-link>.</p>
-      </div>
+      </el-form>
     </div>
   </div>
 </template>
 
-<script>
-import { userRegister } from "../api/user";
+<script >
+import {userLogin, userRegister} from "../api/user";
+
 export default {
+  name: 'HomeView',
+
   data() {
+    var validateUsername = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入用户名'));
+      } else {
+        callback();
+      }
+    };
+    var validateNickname = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入昵称'));
+      } else {
+        callback();
+      }
+    };
+    var validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入密码'));
+      } else {
+        if (this.ruleForm.checkPass !== '') {
+          this.$refs.ruleForm.validateField('checkPass');
+        }
+        callback();
+      }
+    };
+    var validatePass2 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再次输入密码'));
+      } else if (value !== this.ruleForm.password) {
+        callback(new Error('两次输入密码不一致!'));
+      } else {
+        callback();
+      }
+    };
     return {
-      userName: "",
-      password: "",
-      nickName: "",
+      ruleForm: {
+        username:'',
+        password: '',
+        checkPass: '',
+        nickname:'',
+      },
+      rules: {
+        password: [
+          { validator: validatePass, trigger: 'blur' }
+        ],
+        checkPass: [
+          { validator: validatePass2, trigger: 'blur' }
+        ],
+        username:[
+          { validator: validateUsername, trigger: 'blur' }
+        ],
+        nickname:[
+          { validator: validateNickname, trigger: 'blur' }
+        ]
+      }
     };
   },
-  methods: {
-    registerBtn() {
-      if (this.userName == "") {
-        alert("用户名不能为空");
-        return;
-      } else if (this.nickName == "") {
-        alert("昵称不能为空");
-      } else if (this.password == "") {
-        alert("密码不能为空");
-        return;
-      } else {
-        userRegister({
-          userName: this.userName,
-          password: this.password,
-          nickName: this.nickName,
-          avatar: "rongxiaotong.gif",
-        })
-          .then((res) => {
-            if (res.flag == true) {
-              alert(res.message);
-              this.$store.commit("updateLoginUserNickname", this.nickName);
-              this.$router.push("/login").catch((err) => err);
-            } else {
-              alert(res.data);
-            }
-          })
-          .catch((err) => {
-            alert(err);
-          });
-      }
-    },
-  },
-  created() {},
-};
-</script>
 
-<style lang="less" scoped>
-@import url("../../node_modules/bootstrap/dist/css/bootstrap.css");
-body {
-  background-color: #f9f9f9;
-}
-.register-box {
-  box-sizing: border-box;
-  // width: 1897px;
-  height: 800px;
-  padding-top: 150px;
-  background: url("../assets/img/rice.png");
-  background-size: 1897px 920px;
-  .register {
-    width: 340px;
-    margin: 0 auto;
-    color: #333;
-    .header {
-      height: 40px;
-      text-align: center;
-      h1 {
-        margin: 0;
-        font-size: 26px;
-        color: white;
-      }
-    }
-    #register_form {
-      padding: 20px;
-      margin-bottom: 15px;
-      border: 1px solid #d8dee2;
-      border-radius: 5px;
-      background-color: #fff;
-    }
-    .message {
-      padding: 10px;
-      padding-bottom: 0;
-      color: white;
-      border: 1px solid #d8dee2;
-      border-radius: 5px;
-      text-align: center;
+
+
+  methods:{
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
+    register(formName){
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          console.log(this.ruleForm.username)
+          userRegister({
+            userName: this.ruleForm.username,
+            password: this.ruleForm.password,
+            nickName: this.ruleForm.nickname,
+            avatar: "rongxiaotong.gif",
+          })
+              .then((res) => {
+                if (res.flag == true) {
+                  alert(res.message);
+                  this.$store.commit("updateLoginUserNickname", this.nickName);
+                  this.$router.push("/login").catch((err) => err);
+                } else {
+                  alert(res.data);
+                }
+              })
+              .catch((err) => {
+                alert(err);
+              });
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+
     }
   }
 }
+
+
+
+
+</script>
+<style scoped>
+#icon{
+  position:absolute;
+  width: 100px;
+  top:0%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+.login {
+  box-sizing: border-box;
+  height: 100%;
+  padding-top: 150px;
+  background: url("../assets/img/Login.jpg");
+  background-size: 1707px 837px;
+}
+
+
+.registerPart{
+  position:absolute;
+  /*定位方式绝对定位absolute*/
+  top:50%;
+  left:80%;
+  /*!*顶和高同时设置50%实现的是同时水平垂直居中效果*!*/
+  transform:translate(-50%,-50%);
+  /*实现块元素百分比下居中*/
+  width:450px;
+  min-height: 300px;
+  padding-top:70px;
+  padding-bottom:15px;
+  padding-right:50px;
+
+  background: rgba(0,0,0, .6);
+  /*背景颜色为黑色，透明度为0.8*/
+  box-sizing:border-box;
+  /*box-sizing设置盒子模型的解析模式为怪异盒模型，
+  将border和padding划归到width范围内*/
+  box-shadow: 0px 15px 25px rgba(0,0,0,.5);
+  /*边框阴影  水平阴影0 垂直阴影15px 模糊25px 颜色黑色透明度0.5*/
+  border-radius:15px;
+  /*边框圆角，四个角均为15px*/
+}
+.registerPart h2{
+  margin-top: -10px;
+  margin-bottom: 20px;
+  padding:0;
+  color: #fff;
+  font-weight: bold;
+  font-size: 22px;
+  font-family: "PingFang SC";
+  /*文字居中*/
+  margin-left:45.5%
+}
+.registerPart .inputbox{
+  position:relative;
+}
+.registerPart .inputElement .el-input__wrapper{
+  width: 100%;
+  padding:5px 0;
+  font-size:14px;
+  color:white;
+  letter-spacing: 1px;
+  /*字符间的间距1px*/
+  /*margin-bottom: 30px;*/
+  border:none;
+  border-bottom: 1px solid #fff;
+  box-shadow: none;
+  outline:none;
+  /*outline用于绘制元素周围的线在这里用途,是将输入框的边框的线条使其消失*/
+
+  background: transparent;
+  /*背景颜色为透明*/
+}
+
+.registerPart .inputElement .el-input__inner{
+  font-size: 15px;
+  color: #f6f0f0;
+}
+
+::v-deep .el-form-item__label{
+  color: #dba155;
+  font-family: 黑体;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+
+
 </style>

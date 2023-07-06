@@ -18,7 +18,7 @@
     </div>
 
     <div class="goods" v-for="(item, index) in cgoods"
-         :key="index" @click="detailsClick(item.orderId)" :style="(index+1)%4===0?'margin-right:0':'margin-right:45px;'">
+         :key="index" @click="detailsClick(item.orderId)" :style="(index+1)%4===0?'margin-right:0':'margin-right:44px;'">
       <img class="goods-img" v-if="item.picture!=''" :src="$store.state.imgShowRoad + '/file/' + item.picture" alt="" />
       <img class="goods-img" v-if="item.picture==''" :src="$store.state.imgShowRoad + '/file/' + 'wutu.gif'" alt="" />
       <div style="text-align: right;height:250px">
@@ -28,7 +28,7 @@
             content="加入购物车"
             placement="top-start"
         >
-          <i class="el-icon-shopping-cart-2 icon" @click=""></i>
+          <i class="el-icon-shopping-cart-2 icon" @click="toCart"></i>
         </el-tooltip>
         <el-tooltip
             class="box-item"
