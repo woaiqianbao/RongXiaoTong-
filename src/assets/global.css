@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: '汉仪雅酷黑';
+    src:url("./font/汉仪雅酷黑W.ttf");
+}
+
+@font-face {
+    font-family: '鸿蒙字体Regular';
+    src:url("./font/HarmonyOS_Sans_Regular.ttf");
+}
+
+
+@font-face {
+    font-family: '苹果字体Black';
+    src:url("./font/SF-Pro-Display-Black.otf");
+}
+
