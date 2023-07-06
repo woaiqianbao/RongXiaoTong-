@@ -32,8 +32,6 @@ export default {
       required: true,
     }
   },
-
-
 }
 </script>
 
@@ -106,6 +104,10 @@ export default {
 /* front pane, placed above back */
 .front {
   z-index: 2;
+}
+
+img{
+  box-shadow: 0px 0px 10px black;
 }
 
 /* back, initially hidden pane */
