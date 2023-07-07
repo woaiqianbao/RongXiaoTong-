@@ -8,11 +8,11 @@
         <div class="item-container">
           <div class="item-content marginR30" v-if="role==='expert'">
             <div class="item-title">咨询者：</div>
-            <div class="item-text">{{item.questioner}}</div> 
+            <div class="item-text">{{item.questioner}}</div>
           </div>
           <div class="item-content marginR30" v-if="role==='expert'">
             <div class="item-title">咨询者联系方式：</div>
-            <div class="item-text">{{item.phone}}</div> 
+            <div class="item-text">{{item.phone}}</div>
           </div>
           <div class="item-content marginR30" v-if="role==='questioner'">
             <div class="item-title">专家姓名：</div>
@@ -22,7 +22,7 @@
         <div class="item-container">
           <div class="item-content marginR30">
             <div class="item-title">作物条件：</div>
-            <span class="item-text">{{item.plantCondition}}</span> 
+            <span class="item-text">{{item.plantCondition}}</span>
           </div>
           <div class="item-content marginR30">
             <div class="item-title">土壤条件：</div>
@@ -30,7 +30,7 @@
           </div>
           <div class="item-content marginR30">
             <div class="item-title">面积：</div>
-            <div class="item-text">{{item.area}}亩</div> 
+            <div class="item-text">{{item.area}}亩</div>
           </div>
           <el-tag style="position:relative;left:360px" :type="item.status === 0 ? 'danger':'success'" size="mini">{{item.status === 0 ? '未回答' :'已回答'}}</el-tag>
         </div>
@@ -158,7 +158,7 @@ export default {
   methods:{
     getData(){
       this.role =  this.$store.getters.isExpert?'expert':'questioner'
-      
+
       // kind：普通用户：questioner；专家：expert
       selectAppointByUser({type:this.role}).then(res => {
         console.log('rererer',res)
@@ -186,7 +186,7 @@ export default {
         this.$message({
           type: 'info',
           message: '已取消删除'
-        });          
+        });
       });
     },
     handleDetail(item){
@@ -314,7 +314,7 @@ export default {
       display: flex;
     }
     .item-title{
-      width: 110px;
+      width: 150px;
       height: 30px;
       font-weight: bold;
       color: #333;

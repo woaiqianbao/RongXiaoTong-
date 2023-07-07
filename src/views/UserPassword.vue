@@ -3,7 +3,7 @@
     <el-form
       :model="ruleForm"
       ref="ruleForm"
-      label-width="100px"
+      label-width="150px"
       class="demo-ruleForm"
     >
       <el-form-item label="原密码：" prop="name">
@@ -15,7 +15,7 @@
       <el-form-item label="新密码：" prop="name">
         <el-input
           v-model="ruleForm.newPassword"
-          style="width: 300px" show-password
+          style="width:300px" show-password
         ></el-input>
       </el-form-item>
       <el-form-item label="确认新密码：" prop="name">
@@ -27,7 +27,7 @@
     </el-form>
     <el-button
       style="margin-left: 300px"
-      type="success"
+      type="success" round plain
       @click="changePasswordClick"
       >修改密码</el-button
     >
@@ -93,5 +93,13 @@ export default {
   padding: 20px;
   background: #fff;
   height: 100%;
+}
+
+
+::v-deep .el-form-item__label{
+  color: #000000;
+  font-family:"PingFang SC";
+  font-size: 16px;
+  font-weight:100;
 }
 </style>

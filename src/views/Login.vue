@@ -5,17 +5,17 @@
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" >
         <h2 >用户登录</h2>
         <el-form-item label="账号" prop="username" >
-          <el-input  v-model="ruleForm.username" autocomplete="off"></el-input>
+          <el-input  v-model="ruleForm.username"   placeholder="请输入账号" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
+          <el-input type="password" placeholder="请输入密码"  v-model="ruleForm.password" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="warning" @click="submitForm('ruleForm')">登录</el-button>
-          <el-button  @click="resetForm('ruleForm')">重置</el-button>
+          <el-button round @click="submitForm('ruleForm')">登录</el-button>
+          <el-button round @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
         <div style="text-align: right;color: white;">
-          <el-link type="warning" style="margin-top: 20px" @click="$router.push('/register');">没有账号？去注册</el-link>
+          <el-link type="warning" style="margin-top: 20px;font-weight: 100" @click="$router.push('/register');">没有账号？去注册</el-link>
         </div>
       </el-form>
     </div>
@@ -130,12 +130,12 @@ export default {
   padding-bottom:15px;
   padding-right:50px;
 
-  background: rgba(0,0,0, .6);
+  background: rgba(0, 0, 0, 0.6);
   /*背景颜色为黑色，透明度为0.8*/
   box-sizing:border-box;
   /*box-sizing设置盒子模型的解析模式为怪异盒模型，
   将border和padding划归到width范围内*/
-  box-shadow: 0px 15px 25px rgba(0,0,0,.5);
+  box-shadow: 0px 0px 20px rgb(26, 26, 26);
   /*边框阴影  水平阴影0 垂直阴影15px 模糊25px 颜色黑色透明度0.5*/
   border-radius:15px;
   /*边框圆角，四个角均为15px*/
@@ -143,7 +143,6 @@ export default {
 .loginPart h2{
   margin-top: -10px;
   margin-bottom: 20px;
-
   padding:0;
   color: #fff;
   font-weight: bold;
@@ -155,6 +154,7 @@ export default {
 .loginPart .inputbox{
   position:relative;
 }
+
 .loginPart .inputElement .el-input__wrapper{
   width: 100%;
   padding:5px 0;
@@ -169,14 +169,24 @@ export default {
   outline:none;
   /*outline用于绘制元素周围的线在这里用途,是将输入框的边框的线条使其消失*/
 
-  background: transparent;
-  /*背景颜色为透明*/
 }
 
-.loginPart .inputElement .el-input__inner{
-  font-size: 15px;
-  color: #f6f0f0;
+
+
+
+
+
+::v-deep .el-input__inner{
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #dba155;
+  color: #ffffff;
+  font-weight: 100;
+  font-size: 16px;
+  &::placeholder{
+    color: #848484;
+  }
 }
+
 
 ::v-deep .el-form-item__label{
   color: #dba155;
@@ -184,4 +194,23 @@ export default {
   font-size: 17px;
   font-weight: bold;
 }
+
+
+.el-button{
+  background-color: rgba(255, 255, 255,0.2);
+  color: #dba155;
+  font-weight: 600;
+  font-size: 17px;
+  border: 1px solid #dba155;
+  width: 48%;
+}
+
+.el-button:hover {
+  color: #ffc377;
+  background-color: rgba(255, 255, 255,0.5);
+  border: 1px solid #dba155;
+}
+
+
+
 </style>

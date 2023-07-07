@@ -1,7 +1,7 @@
 <template>
   <div class="goods-box4">
     <div class="search">
-      <el-input  placeholder="请输入内容" v-model="searchValue" maxlength="100" clearable style="width:290px;">
+      <el-input  placeholder="查找专家" v-model="searchValue" maxlength="100" clearable style="width:290px;">
         <i slot="prefix" class="el-input__icon el-icon-search search-icon" @click="handleSearch"  ></i>
       </el-input>
     </div>

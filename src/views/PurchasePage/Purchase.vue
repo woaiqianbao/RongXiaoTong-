@@ -1,18 +1,24 @@
 <template>
   <div class="needs-box">
     <div class="search3">
-      <el-input v-model="searchValue" maxlength="100" clearable style="width:290px;"/>
-      <img src="src/assets/img/search.png" class="search-icon" @click="handleSearch"/>&nbsp;&nbsp;
-        <i style="color:#696969;font-size:13px;font-style:normal;">&nbsp;热门搜索：
-          <a class="tag-item" @click="handleTopicDetail('苹果')">苹果</a>
-          <a class="tag-item" @click="handleTopicDetail('新疆哈密瓜')">新疆哈密瓜</a>
-          <a class="tag-item" @click="handleTopicDetail('樱桃')">樱桃</a>
-          <a class="tag-item" @click="handleTopicDetail('西红柿')">西红柿</a>
-          <a class="tag-item" @click="handleTopicDetail('水稻')">水稻</a>
-          <a class="tag-item" @click="handleTopicDetail('玉米')">玉米</a>
-          <a class="tag-item" @click="handleTopicDetail('赣南脐橙')">赣南脐橙</a>
-        </i>
+      <el-input  placeholder="请输入内容" v-model="searchValue" maxlength="100" clearable style="width:250px;margin-right: 15px">
+        <i slot="prefix" class="el-input__icon el-icon-search search-icon" @click="handleSearch"  ></i>
+      </el-input>
+
+      <el-button-group>
+        <el-button round @click="handleTopicDetail('')" >全部 </el-button>
+        <el-button round @click="handleTopicDetail('苹果')"> 苹果 </el-button>
+        <el-button round @click="handleTopicDetail('新疆哈密瓜')" style="width: 120px">新疆哈密瓜 </el-button>
+        <el-button round @click="handleTopicDetail('樱桃')"> 樱桃</el-button>
+        <el-button round @click="handleTopicDetail('西红柿')"> 西红柿 </el-button>
+        <el-button round @click="handleTopicDetail('水稻')"> 水稻 </el-button>
+        <el-button round @click="handleTopicDetail('玉米')"> 玉米 </el-button>
+        <el-button round @click="handleTopicDetail('赣南脐橙')" style="width: 110px" > 赣南脐橙 </el-button>
+      </el-button-group>
+
+
     </div>
+
     <div class="purchase-content">
       <div v-for="(item, index) in cneeds"
       :key="index" class="purchase-item"
@@ -82,6 +88,7 @@ export default {
     padding: 10px 20px;
     margin: 10px auto;
     width: 1100px;
+
     .tag-item{
       margin-right: 10px;
       cursor: pointer;
@@ -163,5 +170,26 @@ export default {
 .search3 /deep/ .el-input--suffix .el-input__inner{
   height: 35px;
   line-height: 35px;
+}
+
+
+::v-deep .el-button-group>.el-button {
+  border-radius: 100px;
+  margin:0px 5px;
+  border: 1px solid #DCDFE6;
+
+  &:hover{
+    text-decoration: underline;
+    background-color: #ffffff;
+    color: black;
+  }
+  &:focus{
+    color: #ff4f16;
+    background-color: #ffffff;
+  }
+}
+
+::v-deep .el-button-group>.el-button:not(:first-child):not(:last-child) {
+  border-radius: 100px;
 }
 </style>

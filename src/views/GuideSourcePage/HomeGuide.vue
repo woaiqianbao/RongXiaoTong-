@@ -2,7 +2,7 @@
 <template>
   <div>
 
-    <img src="../../assets/page2/background2.jpg" alt="">
+    <img src="../../assets/page5/background5.jpg" alt="">
     <Questions />
 
     <div class="home-guide-container">

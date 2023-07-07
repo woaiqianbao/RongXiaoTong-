@@ -5,23 +5,23 @@
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <h2>用户注册</h2>
         <el-form-item label="账号" prop="username">
-          <el-input  v-model="ruleForm.username" autocomplete="off"></el-input>
+          <el-input placeholder="请输入账号"  v-model="ruleForm.username" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="昵称" prop="nickname">
-          <el-input  v-model="ruleForm.nickname" autocomplete="off"></el-input>
+          <el-input placeholder="请输入昵称"  v-model="ruleForm.nickname" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
+          <el-input placeholder="请输入密码"  type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="确认密码" prop="checkPass">
-          <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+          <el-input placeholder="请再次输入密码"  type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="warning" @click="register('ruleForm')">注册</el-button>
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
+          <el-button round type="warning" @click="register('ruleForm')">注册</el-button>
+          <el-button round @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
-        <div style="text-align: right;color: white;">
-          <el-link type="warning" style="margin-top: 20px" @click="$router.push('/login');">已有账号？去登录</el-link>
+        <div style="text-align: right;">
+          <el-link type="warning" style="margin-top: 20px;font-weight: 100" @click="$router.push('/login');">已有账号？去登录</el-link>
         </div>
       </el-form>
     </div>
@@ -134,7 +134,7 @@ export default {
 
 
 </script>
-<style scoped>
+<style lang="less" scoped>
 #icon{
   position:absolute;
   width: 100px;
@@ -208,9 +208,16 @@ export default {
   /*背景颜色为透明*/
 }
 
-.registerPart .inputElement .el-input__inner{
-  font-size: 15px;
-  color: #f6f0f0;
+::v-deep .el-input__inner{
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #dba155;
+  color: #ffffff;
+  font-weight: 100;
+  font-size: 16px;
+  &::placeholder{
+    color: #848484;
+  }
+
 }
 
 ::v-deep .el-form-item__label{
@@ -220,6 +227,20 @@ export default {
   font-weight: bold;
 }
 
+.el-button{
+  background-color: rgba(255, 255, 255,0.2);
+  color: #dba155;
+  font-weight: 600;
+  font-size: 17px;
+  border: 1px solid #dba155;
+  width: 48%;
+}
+
+.el-button:hover {
+  color: #ffc377;
+  background-color: rgba(255, 255, 255,0.5);
+  border: 1px solid #dba155;
+}
 
 
 </style>

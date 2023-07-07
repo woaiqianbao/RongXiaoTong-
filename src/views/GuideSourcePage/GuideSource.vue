@@ -5,13 +5,11 @@
         <i slot="prefix" class="el-input__icon el-icon-search search-icon" @click="handleSearch"  ></i>
       </el-input>
       <el-button-group>
-        <el-button round @click="handleTopicDetail('')" autofocus="true">全部 </el-button>
+        <el-button round @click="handleTopicDetail('')" >全部 </el-button>
         <el-button round @click="handleTopicDetail('苹果果树种植方法')"> 苹果 </el-button>
         <el-button round @click="handleTopicDetail('玉米苗灌溉')"> 玉米 </el-button>
         <el-button round @click="handleTopicDetail('北方草莓种植品种')"> 草莓 </el-button>
       </el-button-group>
-
-
     </div>
 
     <div class="goods" v-for="(item, index) in cgoods" :key="index">
@@ -253,18 +251,7 @@ export default {
   line-height: 35px;
 }
 
-button{
-  border-radius: 100px;
-  width: 80px;
-  height: 40px;
-  border: 1px solid #DCDFE6;
-  background-color: white;
-  margin: 0px 5px;
-  font-size: 15px;
-  font-weight: bold;
-  color: black;
 
-}
 ::v-deep .el-button-group>.el-button {
   border-radius: 100px;
   margin:0px 5px;

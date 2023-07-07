@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <img src="../../assets/page2/background2.jpg" alt="">
+    <img src="../../assets/page4/background4.jpg" alt="">
     <Subtitle subtitle="知识列表" description="买到就是赚到哦~"  style="margin-top:100px;"/>
     <div class="home-konwledges">
       <knowledge :cknowledges="knowledges"></knowledge>

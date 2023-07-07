@@ -41,7 +41,6 @@
           <el-menu-item index="8-1" @click.native="userPage">个人中心</el-menu-item>
           <el-menu-item index="8-3" @click="userManage" v-if="$store.getters.isAdmin">用户管理</el-menu-item>
           <el-menu-item index="8-4" @click.native="goodsManage" v-if="$store.getters.isAdmin">商品管理</el-menu-item>
-          <el-menu-item index="8-5" @click.native="handleAbout">关于我们</el-menu-item>
           <el-menu-item index="8-6" @click.native="logout">退出</el-menu-item>
         </el-submenu>
       </el-menu>
@@ -218,7 +217,7 @@ export default {
 }
 
 .menu-content /deep/ .el-submenu__title i{
-  color: #fff;
+  color: #4ab344;
 }
 
 [v-cloak] {
@@ -232,13 +231,15 @@ export default {
 .el-submenu__title:focus,
 .el-submenu__title:hover {
   outline: 0;
-  background-color: rgba(145,208,151,0.2)!important;
+  background-color: white !important;
+  color: #4ab344 !important;
 }
 
 .el-menu-item:focus,
 .el-menu-item:hover {
   outline: 0;
-  background: rgba(145,208,151,0.2)!important;
+  background-color: white !important;
+  color: #4ab344 !important;
 }
 
 .userin  {
@@ -247,9 +248,23 @@ export default {
   text-align: center;
 }
 
-::v-deep .el-menu--horizontal > .el-submenu .el-submenu__title {
+.menu-content[data-v-d1a7e442] .el-submenu__title i {
+  color: #e24f4f;
+}
+::v-deep .el-menu--horizontal > .el-submenu .el-submenu__title
+
+{
   height: 60px;
   line-height: 60px;
   font-size: 16px;
+  &:hover{
+    background-color: white !important;
+    color: #4ab344 !important;
+  }
+}
+
+.el-menu--horizontal > .el-menu-item:hover {
+  background-color: white !important;
+  color: #4ab344 !important;
 }
 </style>

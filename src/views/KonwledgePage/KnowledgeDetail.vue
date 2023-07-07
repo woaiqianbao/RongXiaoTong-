@@ -13,12 +13,9 @@
       <img v-else style="width:500px;height:300px;" :src="$store.state.imgShowRoad + '/file/' + updateInfo.picPath" alt="" />
     </div>
     <div class="detail-content">
-      <pre>{{updateInfo.content}}</pre>
+      <p>{{updateInfo.content}}</p>
     </div>
-    <el-input type="textarea" v-model="content" :rows="5"></el-input>
-    <div style="margin-top:20px;display: flex;flex-direction: row;justify-content: flex-end">
-      <el-button type="success" @click="handleComment">添加评论</el-button>
-    </div>
+
     <div class="comment-container">
       <div class="comment-num">评论共{{commentArray.length||0}}条</div>
       <div class="comment-item" v-for="(item,index) in commentArray" :key="index">
@@ -27,6 +24,17 @@
           <div style="margin-right:40px;">评论人：<span class="color6">{{item.ownName}}</span></div>
           <div>评论时间：<span class="color6">{{item.createTime|formatTimer2}}</span></div>
         </div>
+
+      </div>
+      <div v-if="commentArray.length==0" style="width: 100%;text-align: center;margin: 50px 0px">
+        <img src="../../assets/page4/noComments.png" alt="" >
+      </div>
+
+
+      <div class="comment-num">发表评论</div>
+      <el-input type="textarea" v-model="content" :rows="5"></el-input>
+      <div style="margin-top:20px;display: flex;flex-direction: row;justify-content: flex-end">
+        <el-button type="success" plain @click="handleComment">添加评论</el-button>
       </div>
     </div>
   </div>
@@ -125,6 +133,8 @@ export default {
   mounted(){
     this.getData()
     this.getCommentData()
+
+
   }
 }
 </script>
@@ -132,14 +142,16 @@ export default {
 <style lang="less" scoped>
 .knowlege-detail-container{
   width: 1100px;
+
   margin: 0 auto;
   background: #fff;
-  min-height: 100%;
+  min-height: 1200px;
   padding: 10px 20px;
-  margin-top: 10px;
+  margin-top: 30px;
   .title{
-    font-size: 18px;
+    font-size: 25px;
     text-align: center;
+    font-weight: bold;
   }
   .tips{
     color: #999;
@@ -160,6 +172,8 @@ export default {
     }
   }
   .detail-content{
+    font-size: 17px;
+    margin-top: 15px;
 
   }
   .comment-container{
@@ -167,6 +181,8 @@ export default {
     margin-top: 10px;
     .comment-num{
       font-weight: bold;
+      font-size: 17px;
+      margin-bottom: 10px;
     }
     .comment-item{
       border-bottom: 1px solid #f2f2f2;

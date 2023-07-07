@@ -3,7 +3,7 @@
 <template>
   <div class="details-box">
     <img v-if="data.picture" :src="$store.state.imgShowRoad + '/file/' + data.picture" alt="" />
-    <img v-else src="../assets/img/wutu.gif" alt="" style="border:1px solid #f2f2f2;"/>
+    <img v-else src="../../assets/img/wutu.gif" alt="" style="border:1px solid #f2f2f2;"/>
     <div class="info">
       <h4 class="title">{{ data.title }}</h4>
       <div class="content" :title="data.content">{{ data.content }}</div>
@@ -14,12 +14,12 @@
       </div>
       <div class="item-style">
         <div class="operation">
-          <div class="operation-item"><img src="../assets/img/good.png" class="operation-img" alt="" /> 点赞</div>
-          <div class="operation-item"><img src="../assets/img/no-star.png" class="operation-img" alt="" /> 收藏</div>
-          <div class="operation-item"><img src="../assets/img/fill-in.png" class="operation-img" alt="" />评论</div>
+          <div class="operation-item"><img src="../../assets/img/good.png" class="operation-img" alt="" /> 点赞</div>
+          <div class="operation-item"><img src="../../assets/img/no-star.png" class="operation-img" alt="" /> 收藏</div>
+          <div class="operation-item"><img src="../../assets/img/fill-in.png" class="operation-img" alt="" />评论</div>
         </div>
         <div class="btn-content">
-          <el-button type="danger" @click="addShopcartClick" v-if="data.type == 'goods'">加入购物车</el-button>
+          <el-button type="success" plain round @click="addShopcartClick" v-if="data.type == 'goods'">加入购物车</el-button>
           <el-popover placement="right" width="320" trigger="hover">
             <div>
               <div class="item-sales">卖家姓名：<span class="sales-text">{{updateUserData.userName}}</span></div>
@@ -36,10 +36,10 @@
 </template>
 
 <script>
-import { addOrderToCart } from "../api/cart";
-import { selectOrderById } from "../api/order";
-import ChangeMessage from "../components/ChangeMessage.vue";
-import { selectUserByUsername } from "../api/user";
+import { addOrderToCart } from "../../api/cart";
+import { selectOrderById } from "../../api/order";
+import ChangeMessage from "../../components/ChangeMessage.vue";
+import { selectUserByUsername } from "../../api/user";
 
 export default {
   data() {

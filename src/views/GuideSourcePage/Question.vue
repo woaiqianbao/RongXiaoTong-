@@ -1,6 +1,6 @@
 <template>
   <div class="question-container">
-    <el-form ref="form" :model="form" :rules="ruleForm" label-width="110px">
+    <el-form ref="form" :model="form" :rules="ruleForm" label-width="150px">
       <el-form-item label="标题：" prop="title">
         <el-input v-model="form.title"></el-input>
       </el-form-item>
@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import { addQuestion } from "../api/order";
+import { addQuestion } from "../../api/order";
 
 export default {
   data(){
@@ -56,7 +56,7 @@ export default {
             console.log('error submit!!');
             return false;
           }
-        } ) 
+        } )
       }else{
         this.$message.error('请先登录')
       }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../../assets/page2/background2.jpg" alt="">
+    <img src="../../assets/page3/background3.jpg" alt="">
     <Subtitle subtitle="需求列表" description="买到就是赚到哦~"  style="margin-top:100px;"/>
 
     <div class="home-purchase">

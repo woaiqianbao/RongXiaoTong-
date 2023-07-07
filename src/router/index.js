@@ -10,7 +10,7 @@ import HomeKnowledge from '../views/KonwledgePage/HomeKnowledge'
 import KnowledgeDetail from '../views/KonwledgePage/KnowledgeDetail'
 import ShopCart from '../views/ShopCart'
 import Payment from '../views/Payment'
-import Details from '../views/Details'
+import Details from '../views/GoodSourcePage/Details'
 import purchaseDetails from '../views/purchaseDetails'
 import User from '../views/User'
 import UserInfo from '../views/UserInfo'
@@ -36,13 +36,12 @@ import FrontPage from '../views/FrontPage/FrontPage'
 import HomeGuide from '../views/GuideSourcePage/HomeGuide'
 import guideDetail from '../views/guideDetail'
 import AllExpert from '../views/GuideSourcePage/AllExpert'
-import question from '../views/Question'
-import appointment from '../views/Appointment'
+import question from '../views/GuideSourcePage/Question'
+import appointment from '../views/GuideSourcePage/Appointment'
 import Financing from '../views/Financing'
 import SmartMatch from '../views/SmartMatch'
 import FinancingDetails from '../views/FinancingDetails'
 import userGood from '../views/goodsManager.vue'
-import AboutUs from '../views/AboutUs'
 
 Vue.use(VueRouter)
 
@@ -230,10 +229,8 @@ const routes = [
           }
 
         ]
-      },{
-        path:'aboutUs',
-        component:AboutUs
-      },{
+      },
+      {
         path: 'usermanage',
         component: UserManage
       },

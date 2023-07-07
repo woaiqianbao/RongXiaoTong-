@@ -1,7 +1,7 @@
 <template>
   <div class="add-address">
     <div class="title">我的收货地址</div>
-    <el-button type="success" style="margin-top:10px;" @click="handleAdd">添加</el-button>
+    <el-button type="success" round plain style="margin-top:10px;" @click="handleAdd">添加</el-button>
     <div v-for="(item,index) in allAddressData" :key="index"  class="default-address-container">
       <div>
         <div class="address-item">收货人：{{item.consignee}}</div>
@@ -11,10 +11,10 @@
       <div class="right-btn">
         <el-tag style="position:relative;top:-40px;right:-138px;margin-right: 20px;" v-if="item.isDefault" type="success">默认收货地址</el-tag>
         <!-- <div class="marginR20" @click="handleDetail(item)">详情</div>   -->
-        <div class="marginR20" @click="handleEdit(item)">编辑</div>  
-        <div class="marginR20" @click="handleDel(item)">删除</div>  
-      </div> 
-    </div>     
+        <div class="marginR20" @click="handleEdit(item)">编辑</div>
+        <div class="marginR20" @click="handleDel(item)">删除</div>
+      </div>
+    </div>
     <el-dialog title="更换地址" :visible.sync="dialogVisible" width="580px" :before-close="handleClose">
       <el-table ref="multipleTable" :data="allAddressData" tooltip-effect="dark" style="width: 100%"
        @select="handleSelectionChange">
@@ -48,7 +48,7 @@
         <el-button type="success" @click="updateAddress">确 定</el-button>
       </span>
     </el-dialog>
-    
+
   </div>
 </template>
 
@@ -85,7 +85,7 @@ export default {
         console.log("data--------------")
         console.log('ressss',res)
         this.allAddressData = res.data
-        
+
       }).catch(err=>{
         console.log(err)
       })
@@ -192,7 +192,7 @@ export default {
           this.$message({
             type: 'info',
             message: '已取消删除'
-          });          
+          });
         });
     }
   },

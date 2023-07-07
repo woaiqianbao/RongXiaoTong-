@@ -1,6 +1,6 @@
 <template>
   <div class="appointment-container">
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="110px" class="demo-ruleForm">
+    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px" class="demo-ruleForm">
       <el-form-item label="地址" prop="address">
         <el-input v-model="ruleForm.address" placeholder="请输入地址"></el-input>
       </el-form-item>
@@ -22,16 +22,16 @@
       <el-form-item label="电话" prop="phone">
         <el-input v-model="ruleForm.phone" placeholder="请输入电话"></el-input>
       </el-form-item>
-      
+
       <el-form-item style="float:right;">
-        <el-button type="success" @click="onSubmit">去预约</el-button>
+        <el-button type="success" plain round @click="onSubmit">去预约</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-import { addReserve } from '../api/order'
+import { addReserve } from '../../api/order'
 
 export default {
   data(){
@@ -48,7 +48,7 @@ export default {
         expertName:this.$route.query.id,
       },
       rules:{
-        
+
         phone: [{ required: true, message: '请输入电话', trigger: 'blur' }],
         soilCondition: [{ required: true, message: '请输入土壤状况', trigger: 'blur' }],
         plantCondition: [{ required: true, message: '请输入作物生长状况', trigger: 'blur' }],
@@ -91,7 +91,7 @@ export default {
   width: 1100px;
   height: 100%;
   background: #fff;
-  margin: 10px auto;
+  margin: 30px auto;
   padding: 10px 20px;
 }
 </style>

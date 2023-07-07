@@ -1,20 +1,22 @@
 <template>
   <div class="goods-box">
     <div class="search2">
-      <el-input  placeholder="请输入内容" v-model="searchValue" maxlength="100" clearable style="width:290px;">
+      <el-input  placeholder="请输入内容" v-model="searchValue" maxlength="100" clearable style="width:250px;margin-right: 5px">
         <i slot="prefix" class="el-input__icon el-icon-search search-icon" @click="handleSearch"  ></i>
       </el-input>
 
-      <i style="color:#696969;font-size:13px;font-style:normal;">
-        &nbsp;热门搜索：
-        <a class="tag-item" @click="handleTopicDetail('苹果')">苹果</a>
-        <a class="tag-item" @click="handleTopicDetail('新疆哈密瓜')">新疆哈密瓜</a>
-        <a class="tag-item" @click="handleTopicDetail('樱桃')">樱桃</a>
-        <a class="tag-item" @click="handleTopicDetail('西红柿')">西红柿</a>
-        <a class="tag-item" @click="handleTopicDetail('水稻')">水稻</a>
-        <a class="tag-item" @click="handleTopicDetail('玉米')">玉米</a>
-        <a class="tag-item" @click="handleTopicDetail('赣南脐橙')">赣南脐橙</a>
-      </i>
+      <el-button-group>
+        <el-button round @click="handleTopicDetail('')" >全部 </el-button>
+        <el-button round @click="handleTopicDetail('苹果')"> 苹果 </el-button>
+        <el-button round @click="handleTopicDetail('新疆哈密瓜')" style="width: 120px">新疆哈密瓜 </el-button>
+        <el-button round @click="handleTopicDetail('樱桃')"> 樱桃</el-button>
+        <el-button round @click="handleTopicDetail('西红柿')"> 西红柿 </el-button>
+        <el-button round @click="handleTopicDetail('水稻')"> 水稻 </el-button>
+        <el-button round @click="handleTopicDetail('玉米')"> 玉米 </el-button>
+        <el-button round @click="handleTopicDetail('赣南脐橙')" style="width: 110px" > 赣南脐橙 </el-button>
+      </el-button-group>
+
+
     </div>
 
     <div class="goods" v-for="(item, index) in cgoods"
@@ -28,7 +30,7 @@
             content="加入购物车"
             placement="top-start"
         >
-          <i class="el-icon-shopping-cart-2 icon" @click="toCart"></i>
+          <i class="el-icon-shopping-cart-2 icon" @click="addShopcartClick(item.orderId)"></i>
         </el-tooltip>
         <el-tooltip
             class="box-item"
@@ -70,6 +72,8 @@
 </template>
 
 <script>
+import {addOrderToCart} from "../../api/cart";
+
 export default {
   data() {
     return {
@@ -92,7 +96,23 @@ export default {
     handleTopicDetail(val){
       this.searchValue = val
       this.handleSearch()
-    }
+    },
+    addShopcartClick(val) {
+      addOrderToCart({
+        order_id: val,
+      })
+          .then((res) => {
+            console.log(res);
+            if (res.flag == true) {
+              alert(res.message);
+            } else {
+              alert(res.message);
+            }
+          })
+          .catch((err) => {
+            alert("添加失败,请先登录");
+          });
+    },
   },
 };
 </script>
@@ -101,7 +121,7 @@ export default {
 .search2 {
   height: 60px;
   background-color: white;
-  padding: 10px 20px;
+  padding: 10px 10px;
   background-color: white;
   margin-top: 10px;
   .tag-item{
@@ -238,5 +258,25 @@ export default {
 
 .card:hover{
   box-shadow:0em 0em 2em #343434;
+}
+
+
+::v-deep .el-button-group>.el-button {
+  border-radius: 100px;
+  margin:0px 5px;
+  border: 1px solid #DCDFE6;
+  &:hover{
+    text-decoration: underline;
+    background-color: #ffffff;
+    color: black;
+  }
+  &:focus{
+    color: #ff4f16;
+    background-color: #ffffff;
+  }
+}
+
+::v-deep .el-button-group>.el-button:not(:first-child):not(:last-child) {
+  border-radius: 100px;
 }
 </style>
